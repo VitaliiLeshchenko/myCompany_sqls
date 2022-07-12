@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -53,15 +53,32 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/logist/WMS_ASN_8068_OLD.sql" connection-id="503ce8e8-5f39-4ba5-bb2c-88bed843b89b" session-id="MAIN" current-schema="LOGIST" />
     <mapping file-url="file://$PROJECT_DIR$/logist/WMS_ASN_8068.sql" connection-id="503ce8e8-5f39-4ba5-bb2c-88bed843b89b" session-id="MAIN" current-schema="LOGIST" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
     <execution-history>
       <group-entries value="true" />
-      <execution-inputs />
+      <execution-inputs>
+        <execution-input execution-timeout="30" debug-execution-timeout="600" session-id="MAIN" enable-logging="false" commit-after-execution="false" connection-id="503ce8e8-5f39-4ba5-bb2c-88bed843b89b" object-ref="schemas/LOGIST/functions/FN_CD_MASTER_ID_TOCODE_8068" execution-schema="LOGIST">
+          <argument-actions>
+            <argument name="CD_MASTER_ID">
+              <value><![CDATA[11005]]></value>
+              <value />
+            </argument>
+          </argument-actions>
+        </execution-input>
+      </execution-inputs>
+      <selection connection-id="503ce8e8-5f39-4ba5-bb2c-88bed843b89b" object-ref="schemas/LOGIST/functions/FN_CD_MASTER_ID_TOCODE_8068" />
     </execution-history>
-    <argument-values-cache />
+    <argument-values-cache>
+      <connection connection-id="503ce8e8-5f39-4ba5-bb2c-88bed843b89b">
+        <argument name="CD_MASTER_ID">
+          <value><![CDATA[11005]]></value>
+        </argument>
+      </connection>
+    </argument-values-cache>
   </component>
   <component name="DBNavigator.Project.ObjectDependencyManager">
     <last-used-dependency-type value="INCOMING" />
