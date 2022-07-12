@@ -1,5 +1,5 @@
-CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
-      SELECT client_id,
+CREATE OR REPLACE VIEW WMS_ASN_8068_OLD AS
+SELECT client_id,
              client_name,
              stat_code,
              unique_id,
@@ -14,16 +14,49 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
              units_shpd,
              units_rcvd,
              mod_date_time
-        FROM (SELECT fn_cd_master_id_tocode_8068(im.cd_master_id)  AS client_id,
-                     fn_cd_master_id_toDesc_8068(im.cd_master_id)  AS client_name,
-                     ah.stat_code                                  AS stat_code,
-                     ah.shpmt_nbr                                  AS unique_id,
+        FROM (SELECT CASE
+                         WHEN im.cd_master_id = '18005' THEN '00027'
+                         WHEN im.cd_master_id = '10004' THEN '00017'
+                         WHEN im.cd_master_id = '10003' THEN '00016'
+                         WHEN im.cd_master_id = '18004' THEN '00026'
+                         WHEN im.cd_master_id = '11004' THEN '00018'
+                         WHEN im.cd_master_id = '6003' THEN '00009'
+                         WHEN im.cd_master_id = '4003' THEN '00005'
+                         ELSE ' '
+                     END                                      AS client_id,
+                     CASE
+                         WHEN im.cd_master_id = '18005'
+                         THEN
+                             'ORBICO'
+                         WHEN im.cd_master_id = '10004'
+                         THEN
+                             'Грейс ПРО'
+                         WHEN im.cd_master_id = '10003'
+                         THEN
+                             'Upeco'
+                         WHEN im.cd_master_id = '18004'
+                         THEN
+                             'AUTOTECH'
+                         WHEN im.cd_master_id = '11004'
+                         THEN
+                             'Карма Диджитал'
+                         WHEN im.cd_master_id = '6003'
+                         THEN
+                             'Protoria'
+                         WHEN im.cd_master_id = '4003'
+                         THEN
+                             'БНС Трэйд'
+                         ELSE
+                             ' '
+                     END                                      AS client_name,
+                     ah.stat_code,
+                     ah.shpmt_nbr                             AS unique_id,
                      DECODE (im.cd_master_id,
                              '10003', SUBSTR (ah.shpmt_nbr, 2, 20),
-                             SUBSTR (ah.shpmt_nbr, 3, 20))         AS shpmt_nbr,
+                             SUBSTR (ah.shpmt_nbr, 3, 20))    AS shpmt_nbr,
                      ad.shpmt_seq_nbr,
-                     im.size_desc                                  AS sku_wms,
-                     im.vendor_item_nbr                            AS sku_client,
+                     im.size_desc                             sku_wms,
+                     im.vendor_item_nbr                       sku_client,
                      im.sku_brcd,
                      im.sku_desc,
                      ad.prod_stat,
@@ -34,24 +67,13 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                 FROM asn_hdr ah
                      JOIN asn_dtl ad ON ad.shpmt_nbr = ah.shpmt_nbr
                      JOIN item_master im ON im.sku_id = ad.sku_id
-               WHERE im.cd_master_id IN ('3001', --16.06.2022
-                                         '3003',
-                                         '4003',
-                                         '5003',
-                                         '5004',
-                                         '6003',
-                                         '9004',
-                                         '9005',
-                                         '9006',
-                                         '10003',
+               WHERE im.cd_master_id IN ('18005',
                                          '10004',
-                                         '11004',
-                                         '12004',
-                                         '13004',
-                                         '15004',
-                                         '17004',
+                                         '10003',
                                          '18004',
-                                         '18005')
+                                         '11004',
+                                         '6003',
+                                         '4003')
               UNION ALL
                 SELECT client_id,
                        client_name,

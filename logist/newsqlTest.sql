@@ -1,0 +1,2 @@
+select 'asdasda'
+from dual
