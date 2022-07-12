@@ -46,6 +46,7 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                                          '10003',
                                          '10004',
                                          '11004',
+                                         '11005',  --12.07.2022
                                          '12004',
                                          '13004',
                                          '15004',
@@ -58,7 +59,7 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                        stat_code,
                        unique_id,
                        shpmt_nbr,
-                       shpmt_seq_nbr,
+                       shpmt_seq_nbr,  --12.07.2022
                        sku_wms,
                        sku_client,
                        sku_brcd,
@@ -68,14 +69,14 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                        SUM (units_shpd)                          units_shpd,
                        SUM (units_rcvd)                          units_rcvd,
                        mod_date_time
-                  FROM (SELECT '00029'                     client_id,
-                               'Вайн Хантер'     client_name,
+                  FROM (SELECT '00029'                     AS client_id,
+                               'Вайн Хантер'               AS client_name,
                                ah.stat_code,
                                ah.shpmt_nbr                AS unique_id,
                                ah.shpmt_nbr,
                                ad.shpmt_seq_nbr,
-                               im.size_desc                sku_wms,
-                               im.vendor_item_nbr          sku_client,
+                               im.size_desc                AS sku_wms,
+                               im.vendor_item_nbr          AS sku_client,
                                im.sku_brcd,
                                im.sku_desc,
                                ad.prod_stat,
@@ -94,7 +95,7 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                        unique_id,
                        shpmt_nbr,
                        sku_wms,
-                       shpmt_seq_nbr,
+                       shpmt_seq_nbr,  --12.07.2022
                        sku_client,
                        sku_brcd,
                        sku_desc,
@@ -102,5 +103,4 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                        prod_stat,
                        batch_nbr                                 -- 16.02.2022
               ORDER BY 4, 8)
-    ORDER BY 5, 6
-;
+    ORDER BY 5, 6;
