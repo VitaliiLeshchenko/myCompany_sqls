@@ -58,9 +58,7 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                        stat_code,
                        unique_id,
                        shpmt_nbr,
-                       ROW_NUMBER ()
-                           OVER (PARTITION BY unique_id
-                                 ORDER BY unique_id, sku_wms)    num,
+                       shpmt_seq_nbr,
                        sku_wms,
                        sku_client,
                        sku_brcd,
@@ -96,6 +94,7 @@ CREATE OR REPLACE VIEW LOGIST.WMS_ASN_8068 AS
                        unique_id,
                        shpmt_nbr,
                        sku_wms,
+                       shpmt_seq_nbr,
                        sku_client,
                        sku_brcd,
                        sku_desc,
